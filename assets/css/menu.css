@@ -1,0 +1,36 @@
+ 
+
+body{
+	margin:0;
+	padding: 0;
+	background: url("../img/bg1.jpg") no-repeat center top;
+	background-size: cover;
+	height: 100vh;
+}
+
+.navegar{
+	width: 1000px;
+	margin: 30px auto;
+	background: #424242;
+}
+.navegar ul{
+	list-style: none;
+}
+
+.menu >li{
+	display: inline-block;
+}
+
+.menu > li > a{
+	display: block;
+	padding: 20px 25px;
+	color: #fff;
+	font-family: 'arial';
+	text-decoration: none;
+}
+
+.menu a:hover{
+color: #CE7D35;
+transition: all .3s;
+}
+
