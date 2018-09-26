@@ -11,8 +11,8 @@ Class Usuario{
 		$query="INSERT INTO registro VALUES (null,'$usuario->nombre','$usuario->apellido','$usuario->usuario', '$usuario->password')";
 		$conexion= new conexion();
 		$link=$conexion->conectarse();
-		$row = mysql_fetch_array($query);
-		$sql=mysql_query($query, $link) or die (mysql_error());
+		$row = mysqli_fetch_array($query);
+		$sql=$link->query($query);
 		if($sql){
 			echo "Se registro correctamente la persona";
 		}else
@@ -23,15 +23,8 @@ Class Usuario{
 		$query="SELECT usuario, password FROM registro WHERE usuario='$usuario' AND password='$password'";
 		$conexion= new conexion();
 		$link=$conexion->conectarse();
-		$sql=mysql_query($query, $link) or die (mysql_error());
-		$num = mysql_num_rows($sql);
-		 if( $num > 0 ) { 
-           return 1; 
-       } 
-       else 
-       { 
-          return 0; 
-       } 
+		$sql=$link->query($query);
+		return $sql;
   
    } 
 		
