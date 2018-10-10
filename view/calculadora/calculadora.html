@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../assets/boostrap/css/bootstrap.min.css">
+	<script src="../../assets/boostrap/js/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/boostrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<style type="text/css">
+	.btn{
+		width: 90%;
+		height: 90%;
+	}
+	.input{
+		background-color: #e3e4e5;
+	}
+	.col-button{
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	#display{
+		width: 100%;
+		text-align: right;
+		background-color: #eeeeee;
+		margin-bottom: 12px;
+	}
+	#display:focus{
+		outline:0px;
+	}
+</style>
+</head>
+<body>
+	
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Calculadora</button>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body" style="background-color: #e3e4e5">
+					<div class="container border rounded">
+						<div class="row">
+							<div class="col-sm" align="center">
+								<h1 class="display-2" id="title">Calculadora</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm col-button" align="right" id="input">
+								<input  class="display-3" id="display" autofocus onkeyup="detectarteclas(event)">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-ce" style="font-size: 30px; margin-top: 21px;  margin-bottom: 18px" ><b>CE</b></h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-c" style="font-size: 30px; margin-top: 21px;  margin-bottom: 18px" ><b>C</b></h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-flecha" style="margin-top:-10px; margin-bottom: 18px"><i class="fas fa-backspace" style="font-size: 25px;"></i></h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-division" style="margin-top:-10px; margin-bottom: 18px"><i class="fas fa-divide" style="font-size: 25px;"></i></h1></button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-siete">7</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-ocho">8</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-nueve">9</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-multiplicar" style="margin-top:-10px; margin-bottom: 18px"><i class="fas fa-asterisk" style="font-size: 25px;"></i></h1></button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-cuatro">4</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-cinco">5</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-seis">6</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-resta" style="margin-top:-10px; margin-bottom: 18px"><i class="fas fa-window-minimize" style="font-size: 25px;"></i></h1></button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-uno">1</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-dos">2</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-tres">3</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-mas" style="margin-top:-10px; margin-bottom: 18px"><i class="fas fa-plus" style="font-size: 25px;"></i></h1></button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-masmenos">+-</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-cero">0</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-punto">.</h1></button>
+							</div>
+							<div class="col-sm col-button" align="center">
+								<button type="button" class="btn btn-light"><h1 class="display-4" id="btn-igual" style="margin-top:-10px; margin-bottom: 18px"><i class="fas fa-equals" style="font-size: 25px;"></i></h1></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var display="0";
+	var displaytemp=0;
+	var suma=false;
+	var resta=false;
+	var multiplicacion=false;
+	var division=false;
+	var mas = false;
+	var menos = false;
+	$(document).ready(function(){
+		$('.modal').on('shown.bs.modal', function(){
+			$(this).find('[autofocus]').focus();
+		});
+		$('#display').val(display);
+		$('#btn-ce').click(function(){
+			presBtnCleanEveryThing();
+		});
+		$('#btn-c').click(function(){
+			presBtnClean();
+			
+		});
+		$('#btn-flecha').click(function(){
+			presBtnFlecha();
+			
+		});
+		$('#btn-division').click(function(){
+			presBtnDivision();
+		});
+		$('#btn-siete').click(function(){
+			presbtnsiete();
+		});
+		
+		$('#btn-ocho').click(function(){
+			presbtnocho();
+		});
+		$('#btn-nueve').click(function(){
+			presBtnNueve();
+		});
+		$('#btn-multiplicar').click(function(){
+			presBtnMultiplicar();
+		});
+		$('#btn-cuatro').click(function(){
+			presBtnCuatro();
+		});
+		$('#btn-cinco').click(function(){
+			presBtnCinco();
+		});
+		$('#btn-seis').click(function(){
+			presBtnSeis();
+		});
+		$('#btn-resta').click(function(){
+			presBtnResta();
+		});
+		$('#btn-uno').click(function(){
+			presBtnUno();
+		});
+		$('#btn-dos').click(function(){
+			presBtnDos();
+		});
+		$('#btn-tres').click(function(){
+			presBtnTres();
+		});
+		$('#btn-mas').click(function(){
+			presBtnSuma();
+		});
+		$('#btn-masmenos').click(function(){
+			presBtnMasMenos();
+		});
+
+		$('#btn-cero').click(function(){
+			presBtnCero();
+		});
+		$('#btn-punto').click(function(){
+			presBtnPunto();
+		});
+
+		$('#btn-igual').click(function(){
+			presBtnIgual();
+			
+		});
+
+		
+	});
+
+	detectarteclas=function(valor){
+		//console.log("entra");
+		var teclaPulsada=valor.keyCode;
+		switch(teclaPulsada){
+			case 48:
+			presBtnCero();
+			break;
+			case 49:
+			presBtnUno();
+			break;
+			case 50:
+			presBtnDos();
+			break;
+			case 51:
+			presBtnTres();
+			break;
+			case 52:
+			presBtnCuatro();
+			break;
+			case 53:
+			presBtnCinco();
+			break;
+			case 54:
+			presBtnSeis();
+			break;
+			case 55:
+			presbtnsiete();
+			break;
+			case 56:
+			presbtnocho();
+			break;
+			case 57:
+			presBtnNueve();
+			break;
+			case 43:
+			presBtnSuma();
+			break;
+			case 45:
+			presBtnResta();
+			break;
+			case 42:
+			presBtnMultiplicar();
+			break;
+			case 47:
+			presBtnDivision();
+			break;
+		}
+		$('#display').focus();
+		
+	}
+	function presBtnDivision(){
+		var arrayDisplay = display.split('');
+		var comparacion = arrayDisplay.pop();
+		if(comparacion == ".")
+			display = arrayDisplay.join('');
+		display=parseFloat(display);
+		displaytemp = displaytemp + display;
+		$('#display').val(displaytemp);
+		display = "0";
+		suma = false;
+		resta = false;
+		multiplicacion = false;
+		division = true;
+		$('#display').focus();
+	}
+
+	function presbtnsiete(){
+		if( display == "0"){
+			display = "7";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "7";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+
+	function presbtnocho(){
+		if(display == "0"){
+			display = "8";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "8";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+	function presBtnNueve(){
+		if(display == "0"){
+			display = "9";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "9";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+
+	}
+	function presBtnMultiplicar(){
+		var arrayDisplay = display.split('');
+		var comparacion = arrayDisplay.pop();
+		if(comparacion == ".")
+			display = arrayDisplay.join('');
+		display=parseFloat(display);
+		displaytemp = displaytemp + display;
+		$('#display').val(displaytemp);
+		display = "0";
+		resta = false;
+		suma = false;
+		multiplicacion = true;
+		division = false;
+		$('#display').focus();
+	}
+	function presBtnCuatro(){
+		if(display == "0"){
+			display = "4";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "4";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+	function presBtnCinco(){
+		if(display == "0"){
+			display = "5";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "5";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+	function presBtnSeis(){
+		if(display == "0"){
+			display = "6";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "6";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+	function presBtnResta(){
+		var arrayDisplay = display.split('');
+		var comparacion = arrayDisplay.pop();
+		if(comparacion == ".")
+			display = arrayDisplay.join('');
+		display=parseFloat(display);
+		displaytemp = displaytemp + display;
+		$('#display').val(displaytemp);
+		display = "0";
+		resta = true;
+		suma = false;
+		division = false;
+		multiplicacion = false;
+		$('#display').focus();
+	}
+	function presBtnUno(){
+		if(display == "0"){
+			display = "1";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "1";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+	function presBtnDos(){
+		if(display == "0"){
+			display = "2";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "2";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+	function presBtnTres(){
+		if(display == "0"){
+			display = "3";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "3";
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+	function presBtnMasMenos(){
+		console.log("entra");
+		display = parseInt(display);
+		if(display > 0){
+			display = display * (-1);
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			Math.abs(display);
+			$('#display').val(display);
+			$('#display').focus();
+		}
+	}
+	function presBtnCero(){
+		if(display == "0"){
+			display = "0";
+			$('#display').val(display);
+			$('#display').focus();
+		}else{
+			display = display + "0";
+			$('#display').val(display).
+			$('#display').focus();
+		}
+	}
+	function presBtnSuma(){
+		var arrayDisplay = display.split('');
+		var comparacion = arrayDisplay.pop();
+		if(comparacion == ".")
+			display = arrayDisplay.join('');
+		display=parseFloat(display);
+		displaytemp=displaytemp+display;
+		$('#display').val(displaytemp);
+		display="0";
+		suma=true;
+		resta=false;
+		multiplicacion=false;
+		division=false;
+		$('#display').focus();
+
+	}
+
+	function presBtnIgual(){
+		display = parseFloat(display);
+		if(suma == true){
+			displaytemp = displaytemp + display;
+		}
+		if(resta == true){
+			displaytemp = displaytemp - display;
+		}
+		if(multiplicacion == true){
+			displaytemp = displaytemp * display;
+		}
+		if(division == true){
+			displaytemp = displaytemp / display;
+		}
+
+		$('#display').val(displaytemp);
+		display=0;
+		$('#display').focus();
+	}
+	function presBtnClean(){
+		display = parseInt(display);
+		displaytemp = 0;
+		display = 0;
+		$('#display').val(display);
+		$('#display').focus();
+	}
+	function presBtnCleanEveryThing(){
+		display = parseInt(display);
+		display = 0;
+		$('#display').val(display);
+		$('#display').focus();
+	}
+	function presBtnPunto(){
+		display = display + ".";
+		$('#display').val(display);
+		$('#display').focus();
+	}
+	function presBtnFlecha(){
+		var arrayDisplay = display.split("");
+		arrayDisplay.pop();
+		display = arrayDisplay.join('');
+		if(display == "")
+			display = "0";
+		$('#display').val(display);
+		$('#display').focus();
+	}
+
+</script>

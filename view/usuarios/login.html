@@ -2,14 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../../assets/boostrap/css/bootstrap.min.css">
 	<meta charset="utf-8">
 	<title>Loging</title>
 	<link rel="stylesheet" href="../../assets/css/loging.css">
+	<script src="../../assets/boostrap/js/jquery-3.3.1.min.js"></script>
+	<script src="../../assets/boostrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="loging">
 		<h1>Iniciar Sesión</h1>
-		<form action="../../controller/usuarios/validar.php" method="POST">
+		<form action="../../controller/usuarios/validar.php" method="POST" id="formlogin">
 			<!--USUARIO-->
 			<label for="usuario">Usuario</label>
 			<input type="text" required placeholder="Ingresar usuario" name="usuario">
@@ -23,3 +27,20 @@
 	</div>
 </body>
 </html> 
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	// 	$('#mybutton').click(function(){
+	// 		alert('entra jquery');
+	// 	});
+
+	// 	$('#formlogin').submit(function(){
+	// 		alert('Se ha intentado enviar el formulario');
+	// 		return false;
+	// 	});
+	});
+	// function myfun(){
+	// 	console.log("entrar")
+	// }
+
+</script>
